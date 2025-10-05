@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "quick_sort.h"
+#include "printHelp.h"
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        printf("Usage: %s -c (ascending) or %s -d (descending)\n", argv[0], argv[0]);
+        printf("Usage:\n%s -c (ascending) or %s -d (descending)\n%s -h (Help)\n", argv[0], argv[0], argv[0]);
         return 1;
     }
 
@@ -14,8 +15,16 @@ int main(int argc, char* argv[]) {
         ascending = 1;
     } else if(strcmp(argv[1], "-d") == 0) {
         ascending = 0;
-    } else {
-        printf("Invalid option please try again : %s -c (ascending) or %s -d (descending)\n", argv[0], argv[0]);
+    } else if(strcmp(argv[1], "-h") == 0) {
+        printHelp(0);
+        return 0;
+    } else if(strcmp(argv[1], "-hen") == 0) {
+        printHelp(1);
+        return 0;
+    } 
+    
+    else {
+        printf("Invalid option please try again :\n%s -c (ascending) or %s -d (descending)\n%s -h (help)\n", argv[0], argv[0], argv[0]);
         return 1;
     }
 

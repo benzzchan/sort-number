@@ -1,4 +1,4 @@
-#include "quick-sort.h"
+#include "quick_sort.h"
 
 void swap(int *a, int *b) {
     int temp = *a;

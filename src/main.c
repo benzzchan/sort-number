@@ -15,25 +15,41 @@ int main(int argc, char* argv[]) {
     } else if(strcmp(argv[1], "-d") == 0) {
         ascending = 0;
     } else {
-        printf("Invalid option please try again : %s -c (ascending) or %s (descending)\n", argv[0], argv[0]);
+        printf("Invalid option please try again : %s -c (ascending) or %s -d (descending)\n", argv[0], argv[0]);
+        return 1;
     }
 
     int n;
-    char check;
+    char check = 'N';
+    int result;
     
     while(check != 'Y' && check != 'y') {
-        printf("How many numbers do you want to sort ? ");
-        scanf("%d", &n);
-        printf("Are you sure ? (Y/N)\n");
-        printf("Y -> Yes ; N -> No\n");
+        do {
+            printf("How many numbers do you want to sort ? ");
+            result = scanf("%d", &n);
+
+            if (result != 1) {
+                printf("\033[31mInvalid input. Please enter a number.\033[0m\n");
+                while (getchar() != '\n');
+            }
+        } while (result != 1);
+
+        printf("Are you sure ? (Y/N) : ");
         scanf(" %c", &check);
+        printf("\n");
     }
 
     int* arr = (int*)malloc(1 * sizeof(int));
 
     printf("Enter the %d numbers : \n", n);
     for(int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+        do {
+            result = scanf("%d", &arr[i]);
+            if(result != 1) {
+                printf("\033[31mInvalid input. Please enter a number.\033[0m\n");
+                while (getchar() != '\n');
+            }
+        } while(result != 1);
     }
 
     quickSort(arr, 0, n - 1, ascending);
